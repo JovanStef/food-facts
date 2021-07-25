@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import "src/assets/scss/mixins&globals.scss";
+body {
+  font-size: 0.62em;
+}
+.pill-button {
+  @include pill_button();
+}
+a {
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+  text-decoration: none;
+  color: inherit;
+}

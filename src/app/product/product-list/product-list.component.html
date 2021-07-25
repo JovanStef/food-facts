@@ -1,0 +1,29 @@
+<food-spinner *ngIf="showSpinner">
+</food-spinner>
+<food-header></food-header>
+<ng-container *ngIf="message">
+  <div class="container mt-5">
+    <h2>{{message}}</h2>
+  </div>
+</ng-container>
+<ng-container *ngIf="products.length !== 0">
+  <div class="container mt-5">
+    <div class="product-list">
+      <div *ngFor="let product of products" class="w-100">
+        <food-product-card [product]="product"></food-product-card>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+
+    <div class="paggination">
+      <div class="wrapper d-flex flex-column flex-sm-row justify-content-center align-items-center">
+        <button class="pill-button" (click)="skipBack()">&#60;</button>
+        <button class="pill-button" (click)="prevPage()">prev</button>
+        <p class="my-0 mx-2">Page: {{paggination.currPage}} of {{paggination.maxPages}}</p>
+        <button class="pill-button" (click)="nextPage()">next</button>
+        <button class="pill-button " (click)="skipFrwd()">&#62;</button>
+      </div>
+    </div>
+  </div>
+</ng-container>

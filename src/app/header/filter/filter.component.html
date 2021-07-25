@@ -1,0 +1,17 @@
+<div id="filter-container" class="d-flex flex-row-reverse flex-wrap p-3">
+  <form id="form" [formGroup]="form" (ngSubmit)="onSubmit(form)">
+    <label class="py-1" for="filter" class="d-block">Type ingredients to filter by</label>
+    <div class="d-flex align-items-center">
+      <input required type="text" formControlName="filter" name="filter" id="filter">
+      <button class="pill-button" type="submit" [disabled]="disabledButton">Add to list</button>
+    </div>
+  </form>
+  <div class="filter-list d-flex flex-row-reverse flex-wrap align-items-center me-0 me-md-2 p-2">
+    <ng-container *ngFor="let ingredient of ingredientsToFilterBy; let i = index">
+      <div class="item px-2  m-1">
+        <span>{{ingredient}}</span>
+        <span (click)="removeIngredient(i)"> &#10005;</span>
+      </div>
+    </ng-container>
+  </div>
+</div>

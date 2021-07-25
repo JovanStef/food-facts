@@ -1,0 +1,37 @@
+$color-red: red;
+$color-green: green;
+$color-white: white;
+$color-black: black;
+@mixin pill_button() {
+  background-color: $color-red;
+  border-radius: 23px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 5px 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-red;
+  }
+  &:disabled,
+  &[disabled] {
+    background-color: white;
+    color: gray;
+    border: 1px solid gray;
+  }
+}
+@mixin gradient_text() {
+  color: #f02d85;
+  background-image: -moz-linear-gradient(to right, green, white, red);
+  background-image: -webkit-linear-gradient(to right, green, white, red);
+  background-image: -o-linear-gradient(to right, green, white, red);
+  background-image: -ms-linear-gradient(to right, green, white, red);
+  background-image: linear-gradient(to right, green, white, red);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

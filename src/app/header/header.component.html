@@ -1,0 +1,12 @@
+<div id="header">
+  <div class="container">
+    <div
+      class="header d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-center py-3">
+      <a routerLink="/">
+        <h3>Pizza</h3>
+      </a>
+      <button *ngIf="filter" (click)="showFilter()" class="pill-button">Filter</button>
+    </div>
+    <food-filter *ngIf="showFilterDialog"></food-filter>
+  </div>
+</div>

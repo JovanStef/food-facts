@@ -1,0 +1,52 @@
+<food-spinner *ngIf="showSpinner">
+</food-spinner>
+<food-header></food-header>
+<ng-container *ngIf="product">
+  <div id="product-single" class="pt-0">
+    <div class="container pt-0 p-md-5">
+      <div class="row ">
+        <div class="col-12 col-md-6 left-side">
+          <div class="img-holder p-3">
+            <img src="{{product.getImage().lg}}" alt="">
+          </div>
+          <div class="row brand-info p-2">
+
+            <div class="col-12 col-md-6 brand d-flex justify-content-center align-items-center p-2">{{product.brand}}
+            </div>
+            <div class="col-12 col-md-6 contries p-2">
+
+              <span *ngFor="let country of product.getCountries()" class="p-1 m-1">{{country}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 right-side px-4">
+          <div class="row p-2">
+            <h1 class="p-2">{{product.getName().full()}}</h1>
+          </div>
+          <div class="row p-2">
+            <h3>Ingredients</h3>
+            <div class="col-12 col-md-6 ">
+              <ul>
+                <li *ngFor="let ing of product.ingredients">{{ing}}</li>
+              </ul>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="img-holder"><img src="{{product.ingredImg.lg}}" alt=""></div>
+            </div>
+          </div>
+          <div class="row p-2">
+            <h3>Alergens</h3>
+            <div class="col-12 col-md-6">
+              <ul>
+                <li *ngFor="let alerg of product.allergens">{{alerg}}</li>
+              </ul>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="img-holder"><img src="{{product.alergImg.lg}}" alt=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

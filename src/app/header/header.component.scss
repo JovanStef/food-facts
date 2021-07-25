@@ -1,0 +1,17 @@
+@import "../../assets/scss/mixins&globals.scss";
+#header {
+  background-color: black;
+  color: white;
+  width: 100%;
+  h3 {
+    font-family: "Pacifico", cursive;
+    font-size: 5em;
+    @include gradient_text();
+  }
+  button {
+    align-self: flex-end;
+    @media (max-width: 768px) {
+      align-self: auto;
+    }
+  }
+}

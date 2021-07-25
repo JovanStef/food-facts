@@ -1,0 +1,36 @@
+@import "../../../assets/scss/mixins&globals.scss";
+#filter-container {
+  border-radius: 15px 15px 0 0;
+  background-color: $color-white;
+  color: black;
+  font-size: 1.2em;
+  input[type="text"] {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 15px 0 0 15px;
+    box-sizing: border-box;
+    outline-color: black;
+  }
+  button {
+    border-radius: 0 15px 15px 0;
+    background-color: $color-green;
+    font-size: 0.9em;
+    &:disabled {
+      cursor: auto;
+      color: black;
+    }
+  }
+  .filter-list {
+    border-radius: 15px;
+    flex-grow: 1;
+    .item {
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      span {
+        &:nth-child(2) {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
