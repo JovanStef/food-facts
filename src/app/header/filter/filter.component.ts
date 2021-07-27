@@ -39,7 +39,7 @@ export class FilterComponent implements OnInit {
   onSubmit(form: FormGroup): void {
     if (this.form.valid) {
       this.ingredientsToFilterBy.push( this.currentFormValue.toLowerCase());
-      this.productService.getFilteredProductsByIngredients(this.ingredientsToFilterBy,1).subscribe()
+      this.productService.getProducts(this.ingredientsToFilterBy,1).subscribe()
       this.form.reset();
 
     }
@@ -47,6 +47,6 @@ export class FilterComponent implements OnInit {
 
   removeIngredient(i){
     this.ingredientsToFilterBy.splice(i,1);
-      this.productService.getFilteredProductsByIngredients(this.ingredientsToFilterBy,1).subscribe()
+      this.productService.getProducts(this.ingredientsToFilterBy,1).subscribe()
   }
 }

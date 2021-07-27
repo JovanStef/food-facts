@@ -30,7 +30,7 @@
                 <li *ngFor="let ing of product.ingredients">{{ing}}</li>
               </ul>
             </div>
-            <div class="col-12 col-md-6">
+            <div *ngIf="product.ingredImg.lg" class="col-12 col-md-6">
               <div class="img-holder"><img src="{{product.ingredImg.lg}}" alt=""></div>
             </div>
           </div>

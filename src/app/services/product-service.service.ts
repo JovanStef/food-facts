@@ -23,11 +23,15 @@ export class ProductServiceService {
     private alergenService:AlergensServiceService
     ) { }
 
-  getProducts(): Observable<any> {
-    if(this.ingredients.length !== 0){
-      return this.getFilteredProductsByIngredients(this.ingredients)
-    }else{
-    return this.crud.getProductsFromDB(this.page, this.show)
+  getProducts(ingredients?, page?): Observable<any> {
+      this.ingredients = ingredients || this.ingredients;
+      this.page = page || this.page;
+      
+      let ingreds = (this.ingredients.length !== 0) ? 
+          this.formatIngredientsForFilter(this.ingredients) :
+          null
+      
+    return this.crud.getProductsFromDB(this.page, this.show , ingreds)
     .pipe(
       tap((res)=>this.formatPagination(res)),
       map((res: any) => res.products.map( product => this.formatProductData(product))),
@@ -36,7 +40,6 @@ export class ProductServiceService {
         return throwError({ message: 'Something went wrong please try again later' })}),
       tap(products => this.products.next(products))
     )
-  }
   }
 
   getProductById(id:string):Observable<any>{
@@ -48,24 +51,7 @@ export class ProductServiceService {
         return throwError({ message: 'Something went wrong please try again later' })})
     )
   }
-  getFilteredProductsByIngredients(ingredients, page? ):Observable<any>{
-    this.ingredients = ingredients;
-    this.page = page || this.page;
-    if(this.ingredients.length !== 0){
-      let ingreds = this.formatIngredientsForFilter(ingredients)
-      return this.crud.getProductByFilterIngredients( ingreds ,this.page, this.show)
-      .pipe(
-        tap((res)=> this.formatPagination(res)),
-        map((res: any) => res.products.map( product => this.formatProductData(product))),
-        catchError(error => {
-          return throwError({ message: 'Something went wrong please try again later' })
-        }),
-        tap(products => this.products.next(products))
-        )
-      }else{
-        return this.getProducts()
-      }
-  }
+
   formatProductData(product){
     let ingreds:Ingredient[] = this.ingredientService.formatIngredients(product.ingredients);
     let allergens:IAllergen[] = this.alergenService.formatAllergen(product.allergens);
@@ -100,7 +86,6 @@ export class ProductServiceService {
       )
   }
   formatIngredientsForFilter(ingredients){
-    // tagtype_1=ingredients&tag_contains_1=contains&tag_1=mozzarella&tagtype_2=ingredients&tag_contains_2=contains&tag_2=parmesan
     let temp = ingredients.map((ingred , index)=>{
       ingred = ingred.trim().toLowerCase().replace(/\s/g, '%20');
       return`tagtype_${index+1}=ingredients&tag_contains_${index+1}=contains&tag_${index+1}=${ingred}`

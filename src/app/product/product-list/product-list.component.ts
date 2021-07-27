@@ -37,38 +37,43 @@ export class ProductListComponent implements OnInit {
         })
 
     this.productService.products
-    .subscribe(data => {
-      if(data){
-        this.paggination = this.productService.getPaginationData(); 
-
-        this.products = data;
-      }else{
-        this.message = 'No Data to show'
-      }
-    },
-    (error: any)=>{
-      this.showSpinner = false
-      this.message = 'Something went wrong'
-    })
-
-   
+      .subscribe(data => {
+        if(data){
+          this.paggination = this.productService.getPaginationData(); 
+          this.products = data;
+        }else{
+          this.message = 'No Data to show'
+        }
+      },
+      (error: any)=>{
+        this.showSpinner = false
+        this.message = 'Something went wrong'
+      })
   }
 
   nextPage(): void {
+    this.showSpinner = true;
+
     this.productService.nextPage()
         this.loadProducts();
 
   }
   prevPage(): void {
+    this.showSpinner = true;
+
     this.productService.prevPage()
         this.loadProducts();
 
   }
   skipBack(): void {
+    this.showSpinner = true;
+
     this.productService.skipBackward()
         this.loadProducts()
   }
   skipFrwd(): void {
+    this.showSpinner = true;
+
     this.productService.skipForward()
         this.loadProducts()
   }

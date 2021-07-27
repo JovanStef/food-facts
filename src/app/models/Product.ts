@@ -40,6 +40,9 @@ export class Product implements IProduct{
     return this.country.split(',');
   }
   getName():object{
+    if(!this.name || this.name === ''){
+      this.name = 'No title';
+    }
     return {
       short:() => { 
         if(this.name.split(' ').length > 5){
