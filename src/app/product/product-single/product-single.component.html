@@ -41,7 +41,7 @@
                 <li *ngFor="let alerg of product.allergens">{{alerg}}</li>
               </ul>
             </div>
-            <div class="col-12 col-md-6">
+            <div *ngIf="product.alergImg.lg" class="col-12 col-md-6">
               <div class="img-holder"><img src="{{product.alergImg.lg}}" alt=""></div>
             </div>
           </div>
